@@ -1,0 +1,14 @@
+{
+  "name": "MovieLister",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Cody Crozier",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongojs": "^2.4.1",
+    "mongoose": "^4.13.5"
+  }
+}
