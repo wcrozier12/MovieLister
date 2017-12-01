@@ -1,0 +1,23 @@
+ .Card {
+  text-align: center;
+  display: inline-block;
+  box-shadow: 1px 1px #666;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0px !important;
+  background-color: #555;
+  color:white;
+  margin: 10px;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+.Card:hover {
+  transition: transform 0.2s;
+  transform: scale3d(1.006, 1.006, 1);
+  cursor: pointer;
+} 
+
+.MoviePoster {
+  height: 300px;
+  width: 200px
+}
