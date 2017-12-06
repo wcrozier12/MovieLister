@@ -79,9 +79,9 @@ class Layout extends Component {
     if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0|| this.state.watchedMovies.length !== 0) {
       movies =           
           <div className='row MovieSectionContainer'>
-            <MovieHolder header={'New Movies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
-            <MovieHolder header={'Classics'} movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
-            <MovieHolder header={'History'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'New Movies'} id={'newMovies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'Classics'} id='classics' movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'History'} id={'history'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
           </div>
     }
     return(
