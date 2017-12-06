@@ -8,7 +8,14 @@ const MovieHolder = (props) => {
       <h1> {props.header} </h1>
       <div className='MovieHolder'>
       {props.movies.map((movie, i) => {
-        return <MovieCard key={movie._id} title={movie.title} image={movie.poster} plot={movie.plot} ratings={movie.ratings} />
+        return <MovieCard 
+                key={movie._id} 
+                title={movie.title} 
+                image={movie.poster} 
+                plot={movie.plot} 
+                ratings={movie.ratings} 
+                watched={movie.watched} 
+                markAsWatched={props.markAsWatched} />
       })}
       </div>
     </div>

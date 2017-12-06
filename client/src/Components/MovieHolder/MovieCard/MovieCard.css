@@ -14,7 +14,6 @@
 .Card:hover {
   transition: transform 0.2s;
   transform: scale3d(1.006, 1.006, 1);
-  cursor: pointer;
 } 
 
 .MoviePoster {

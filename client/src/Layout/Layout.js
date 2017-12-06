@@ -50,24 +50,30 @@ class Layout extends Component {
       data.title = res.data.Title;
       data.plot = res.data.Plot;
       data.ratings = res.data.Ratings;
-      data.poster = res.data.Poster; 
+      data.poster = res.data.Poster;
       return axios.post('/newMovie', data)
     })
     .then((res) => {
-      console.log(res);
       this.handleGettingMovies();
     })
   }
 
-  
+  markAsWatchedHandler = (e) => {
+     const title = e.target.name;
+    axios.put('/updateMovie/' + title)
+    .then(res => {
+      console.log(res);
+      this.handleGettingMovies();
+    })
+  }
   render() {
     return(
       <Aux>
         <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} emptyForm={this.state.movieSearch}/>
         <div className='row MovieSectionContainer'>
-          <MovieHolder header={'New Movies'} movies={this.state.newMovies}/>
-          <MovieHolder header={'Classics'} movies={this.state.classicMovies}/>
-          <MovieHolder header={'History'} movies={this.state.watchedMovies}/>
+          <MovieHolder header={'New Movies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler}/>
+          <MovieHolder header={'Classics'} movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler}/>
+          <MovieHolder header={'History'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler}/>
         </div>
       </Aux>
     )

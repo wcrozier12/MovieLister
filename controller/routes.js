@@ -24,5 +24,17 @@ router.post('/newMovie', (req, res) => {
   })
 })
 
+router.put('/updateMovie/:title', (req, res) => {
+  console.log(req.params.title)
+  Movies.update({title: req.params.title}, {watched: true})
+  .then((result) => {
+    console.log(result);
+    return res.json('Updated to watched')
+  })
+  .catch(err => {
+    console.log(err);
+    return res.json('An error Occurred')
+  })
+})
 
 module.exports = router;
