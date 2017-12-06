@@ -1,3 +1,10 @@
+.Layout {
+  background-color: #71100f;
+}
+
 .MovieSectionContainer {
   text-align:center;
+  min-height: 93.2vh;
+  font: 48px monoton;
+  color: white;
 }

@@ -66,16 +66,33 @@ class Layout extends Component {
       this.handleGettingMovies();
     })
   }
+
+  deleteMovieHandler = (title) => {
+    console.log(title);
+    axios.delete('/deleteMovie/' + title)
+    .then(res => {
+      this.handleGettingMovies();
+    })
+  }
   render() {
+    let movies = 'Search for a movie to start!'
+    if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0|| this.state.watchedMovies.length !== 0) {
+      movies =           
+          <div className='row MovieSectionContainer'>
+            <MovieHolder header={'New Movies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'Classics'} movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'History'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+          </div>
+    }
     return(
-      <Aux>
+      <div className='Layout'>
         <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} emptyForm={this.state.movieSearch}/>
-        <div className='row MovieSectionContainer'>
-          <MovieHolder header={'New Movies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler}/>
-          <MovieHolder header={'Classics'} movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler}/>
-          <MovieHolder header={'History'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler}/>
+        <div className='container'>
+          <div className='MovieSectionContainer'>
+            {movies}
+          </div>
         </div>
-      </Aux>
+      </div>
     )
   }
 }

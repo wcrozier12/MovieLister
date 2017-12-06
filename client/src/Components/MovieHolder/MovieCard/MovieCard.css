@@ -1,11 +1,11 @@
  .Card {
   text-align: center;
   display: inline-block;
-  box-shadow: 1px 1px #666;
+  box-shadow: 2px 2px black;
   font-family: 'Quicksand', sans-serif;
   padding: 0px !important;
-  background-color: #555;
-  color:white;
+  background-color: #f5f5f5;
+  color:black;
   margin: 10px;
   border-radius: 12px;
   font-size: 18px;
@@ -17,6 +17,36 @@
 } 
 
 .MoviePoster {
-  height: 300px;
-  width: 200px
+  height: 450px;
+  width: 300px
+}
+
+.Rating {
+  margin: 5px 0px 5px 0px;
+}
+
+.Title {
+  font: 36px Cinzel700;
+}
+.Plot {
+  padding-top:7.5px;
+  margin-top: 5px;
+  border-top: 1px solid black;
+}
+
+.watchedButton {
+  background-color: #ffce30;
+  margin: 5px;
+}
+
+.watchedButton:hover {
+  background-color: #E4B006;
+}
+
+@media(min-width: 768px) {
+  .Title {
+    font: 36px Cinzel700;
+    display: inline-block;
+    margin-right: -15%;
+  }
 }

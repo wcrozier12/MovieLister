@@ -13,7 +13,10 @@ router.get('/api/movies', (req, res) => {
   })
 })
 
-
+router.delete('/deleteMovie/:title', (req, res) => {
+  Movies.remove({title: req.params.title})
+  .then(result => res.json(result)) 
+})
 router.post('/newMovie', (req, res) => {
   Movies.create(req.body)
   .then(() => {
