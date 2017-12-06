@@ -9,7 +9,7 @@ class Layout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newMovies: [],
+      newMovies:[],
       classicMovies: [],
       watchedMovies: [],
       movieSearch: '',
@@ -68,18 +68,18 @@ class Layout extends Component {
   }
 
   deleteMovieHandler = (title) => {
-    console.log(title);
     axios.delete('/deleteMovie/' + title)
     .then(res => {
       this.handleGettingMovies();
     })
   }
+
   render() {
     let movies = 'Search for a movie to start!'
     if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0|| this.state.watchedMovies.length !== 0) {
       movies =           
           <div className='row MovieSectionContainer'>
-            <MovieHolder header={'New Movies'} id={'newMovies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+            <MovieHolder header={'New Movies'} id={'newMovies'} active={this.state.newMovies.active} toggleActive={this.toggleActiveClassHandler} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
             <MovieHolder header={'Classics'} id='classics' movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
             <MovieHolder header={'History'} id={'history'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
           </div>

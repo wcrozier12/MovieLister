@@ -8,7 +8,11 @@ const MovieHolder = (props) => {
       <div id={props.id} className="carousel slide" data-ride="carousel">
         <div className="carousel-inner" role="listbox">
       {props.movies.map((movie, i) => {
-        return <MovieCard 
+        let active = '';
+        console.log(props.movies.length-1);
+        i<1 ? active='active' : null;
+        return <MovieCard
+                active={active}
                 key={movie._id} 
                 title={movie.title} 
                 image={movie.poster} 
