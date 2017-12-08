@@ -1,10 +1,20 @@
 .Layout {
-  background-color: #71100f;
+  background-color: #0A0F0E;
 }
 
 .MovieSectionContainer {
   text-align:center;
   min-height: 93.2vh;
-  font: 48px monoton;
   color: white;
+}
+
+.WelcomeMessage {
+  font: 24px Cinzel700;
+  border: 4px double #f5f5f5;
+  margin: 2.5% 30% 2.5% 30%;
+  letter-spacing: 1px;
+}
+
+.MessageContainer {
+  padding: 2%
 }

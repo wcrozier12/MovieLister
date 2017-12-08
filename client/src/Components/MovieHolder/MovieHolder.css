@@ -1,0 +1,12 @@
+.SectionHeader {
+  width: 100%;
+  padding: 20px 0px 0px 0px;
+  text-align: left;
+}
+
+.SectionTitle {
+  color:'white';
+  font-size: 24px;
+  letter-spacing: 1.3px;
+  padding-left: 10%;
+}

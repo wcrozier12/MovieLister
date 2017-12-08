@@ -1,3 +1,8 @@
-.NavBar {
-  background-color: #ffce30
+/* .NavBar {
+  background-color: #262b2b;
+} */
+
+.NavBrand {
+  color: #B9090B;
+  font-size: 24px;
 }

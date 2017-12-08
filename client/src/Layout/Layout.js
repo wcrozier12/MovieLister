@@ -13,7 +13,8 @@ class Layout extends Component {
       classicMovies: [],
       watchedMovies: [],
       movieSearch: '',
-      viewingModal: false
+      viewingModal: false,
+      resetCarousel: false,
     }
   }
   
@@ -27,12 +28,12 @@ class Layout extends Component {
       const newMovies=res.data.filter(movie => !movie.classic && !movie.watched)
       const classicMovies=res.data.filter(movie => movie.classic && !movie.watched)
       const watchedMovies = res.data.filter(movie => movie.watched)
-
       this.setState({
         newMovies,
         classicMovies,
         watchedMovies,
-        movieSearch: ''
+        movieSearch: '',
+        resetCarousel: false
       })
     })
   }
@@ -62,7 +63,7 @@ class Layout extends Component {
      const title = e.target.name;
     axios.put('/updateMovie/' + title)
     .then(res => {
-      console.log(res);
+      this.setState({resetCarousel: true})
       this.handleGettingMovies();
     })
   }
@@ -70,27 +71,33 @@ class Layout extends Component {
   deleteMovieHandler = (title) => {
     axios.delete('/deleteMovie/' + title)
     .then(res => {
+      this.setState({resetCarousel: true})
       this.handleGettingMovies();
     })
   }
 
   render() {
-    let movies = 'Search for a movie to start!'
-    if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0|| this.state.watchedMovies.length !== 0) {
-      movies =           
-          <div className='row MovieSectionContainer'>
-            <MovieHolder header={'New Movies'} id={'newMovies'} active={this.state.newMovies.active} toggleActive={this.toggleActiveClassHandler} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
-            <MovieHolder header={'Classics'} id='classics' movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
-            <MovieHolder header={'History'} id={'history'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
-          </div>
+    let welcomeMessage = <p className='WelcomeMessage'>Your list is empty.</p>
+    if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0) {         
+      welcomeMessage = null;
     }
+    let newMovies = '';
+    let classicMovies = '';
+    let watchedMovies = '';
+    
+    this.state.newMovies.length!==0 ? newMovies=<MovieHolder header={'New Movies'} reset={this.state.resetCarousel} id={'newMovies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/> : null;
+    this.state.classicMovies.length!==0 ? classicMovies=<MovieHolder header={'Classics'} reset={this.state.resetCarousel} id='classics' movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+ : null;
+    this.state.watchedMovies.length!==0 ? watchedMovies=<MovieHolder header={'History'} reset={this.state.resetCarousel} id={'history'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
+ : null;
+
     return(
       <div className='Layout'>
         <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} emptyForm={this.state.movieSearch}/>
-        <div className='container'>
           <div className='MovieSectionContainer'>
-            {movies}
-          </div>
+            {newMovies}
+            {classicMovies}
+            {watchedMovies}
         </div>
       </div>
     )
