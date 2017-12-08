@@ -13,11 +13,14 @@
   box-shadow: 5px #555;
   border: 2px solid #f5f5f5;
   background-color: #f5f5f5;
-  margin: 20px 0px 40px 0px;
 }  
 
 .CardHeader {
   background-color: #222;
+}
+
+.carousel-item {
+  width: 70vw;
 }
 .MoviePoster {
   height: 300px;
@@ -60,7 +63,7 @@
     font: 36px Cinzel700;
     display: inline-block;
   }
-  .Plot {
-    margin-left: -20%;
-  }
+  /* .PlotCol {
+    margin-left:-10%;
+  } */
 }

@@ -9,15 +9,17 @@ class Layout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newMovies:[],
-      classicMovies: [],
-      watchedMovies: [],
+      categories: [
+        { title: 'New Movies', id:'newMovies', movies:[] },
+        { title: 'Classic Movies', id: 'classics', movies:[] },
+        { title: 'History', id: 'history', movies:[] }
+      ],
       movieSearch: '',
       viewingModal: false,
-      resetCarousel: false,
+      resetCarousel: false
     }
   }
-  
+
   componentDidMount() {
     this.handleGettingMovies();
   }
@@ -28,10 +30,14 @@ class Layout extends Component {
       const newMovies=res.data.filter(movie => !movie.classic && !movie.watched)
       const classicMovies=res.data.filter(movie => movie.classic && !movie.watched)
       const watchedMovies = res.data.filter(movie => movie.watched)
+
+      const categories = [...this.state.categories];
+      categories[0].movies = newMovies;
+      categories[1].movies = classicMovies;
+      categories[2].movies = watchedMovies;
+      console.log(categories);
       this.setState({
-        newMovies,
-        classicMovies,
-        watchedMovies,
+        categories,
         movieSearch: '',
         resetCarousel: false
       })
@@ -77,27 +83,23 @@ class Layout extends Component {
   }
 
   render() {
-    let welcomeMessage = <p className='WelcomeMessage'>Your list is empty.</p>
-    if (this.state.classicMovies.length !== 0 || this.state.newMovies.length !== 0) {         
-      welcomeMessage = null;
-    }
-    let newMovies = '';
-    let classicMovies = '';
-    let watchedMovies = '';
-    
-    this.state.newMovies.length!==0 ? newMovies=<MovieHolder header={'New Movies'} reset={this.state.resetCarousel} id={'newMovies'} movies={this.state.newMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/> : null;
-    this.state.classicMovies.length!==0 ? classicMovies=<MovieHolder header={'Classics'} reset={this.state.resetCarousel} id='classics' movies={this.state.classicMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
- : null;
-    this.state.watchedMovies.length!==0 ? watchedMovies=<MovieHolder header={'History'} reset={this.state.resetCarousel} id={'history'} movies={this.state.watchedMovies} markAsWatched={this.markAsWatchedHandler} deleteMovie={this.deleteMovieHandler}/>
- : null;
-
+      const categories = this.state.categories.map((category, i) => {
+        return <div style={{height: '60vh'}} key={category.id}>
+                  <MovieHolder header={category.title}
+                      numOfMovies={category.movies.length} 
+                      reset={this.state.resetCarousel} 
+                      id={category.id} 
+                      movies={category.movies} 
+                      markAsWatched={this.markAsWatchedHandler} 
+                      deleteMovie={this.deleteMovieHandler}
+                      />
+                </div>
+      })
     return(
       <div className='Layout'>
         <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} emptyForm={this.state.movieSearch}/>
           <div className='MovieSectionContainer'>
-            {newMovies}
-            {classicMovies}
-            {watchedMovies}
+            {categories}
         </div>
       </div>
     )

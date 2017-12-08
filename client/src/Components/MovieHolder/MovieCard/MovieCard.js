@@ -20,7 +20,7 @@ const MovieCard = ({ title, plot, image, watched, markAsWatched, deleteMovie, ra
             <div className='col-md-4'>
               <img className='MoviePoster d-block' src={image} alt='movie' />
             </div>
-            <div className='col-md-8'>
+            <div className='col-md-6 PlotCol'>
               <p className='Plot'> {plot} </p>
             </div>
           </div>

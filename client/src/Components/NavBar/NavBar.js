@@ -4,10 +4,10 @@ import './NavBar.css';
 
 const NavBar = (props) => {
   return(
-  <nav className="navbar bg-faded navbar-toggleable-md NavBar">
-    <a className="navbar-brand NavBrand" href="/">Cody and Tatum's Magical Movie Menu</a>
-    <AddMovieForm changed={props.changed} clicked={props.clicked} empty={props.emptyForm} />
-  </nav>
+      <nav className="navbar bg-faded navbar-toggleable-md NavBar">
+        <a className="navbar-brand NavBrand" href="/">Netflix and chill</a>
+        <AddMovieForm changed={props.changed} clicked={props.clicked} empty={props.emptyForm} />
+      </nav>
   )
 }
 

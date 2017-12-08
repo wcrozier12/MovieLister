@@ -8,13 +8,16 @@ const MovieHolder = (props) => {
     <div className='container'>
       <div className='SectionHeader'>
         <h1 className='SectionTitle'> {props.header} </h1>
+          {props.numOfMovies===0 ? 
+            <div className='MessageContainer'><p className='NoMoviesMessage'>Your list is empty.</p></div> 
+            : null}
       </div>
       <div className='container'>
         <div className='row'>
-          <div id={props.id} className="carousel slide" data-ride="carousel">
+          <div id={props.id} className="carousel slide" data-interval='false'data-ride="carousel">
             <div className="carousel-inner" role="listbox">
           {props.movies.map((movie, i) => {
-            let active = ''; 
+            let active = ' '; 
             if (!props.reset) {
               i===props.movies.length-1 ? active='active' : active='';
             }       
