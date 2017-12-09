@@ -1,30 +1,23 @@
-   .Card {
-  /* text-align: center;
-   display: inline-block; 
-  box-shadow: 2px 2px black;
-  font-family: 'Quicksand', sans-serif;
-   padding: 0px !important; 
-  background-color: #f5f5f5;
-  color:black;
-  margin: 10px;
-  border-radius: 12px;
-  font-size: 18px; */
+.Card {
   color:black;
   box-shadow: 5px #555;
   border: 2px solid #f5f5f5;
   background-color: #f5f5f5;
+  height: 100%;
 }  
 
 .CardHeader {
   background-color: #222;
 }
 
+
 .carousel-item {
   width: 70vw;
+  height:100%
 }
 .MoviePoster {
-  height: 300px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   margin: 0px 0px -10% 0px;
   border: 10px solid #555;
 }
@@ -35,7 +28,6 @@
 .Rating {
   margin: 5px 0px 5px 0px;
   font-size: 18px;
-
 }
 
 .Title {
@@ -45,7 +37,6 @@
 }
 .Plot {
   padding-top:7.5px;
-  margin-top: 5px;
   font-size: 18px;
 }
 
@@ -63,7 +54,4 @@
     font: 36px Cinzel700;
     display: inline-block;
   }
-  /* .PlotCol {
-    margin-left:-10%;
-  } */
 }

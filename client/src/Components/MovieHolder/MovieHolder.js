@@ -5,14 +5,14 @@ import Aux from '../HOCs/Aux';
 
 const MovieHolder = (props) => {
   return (
-    <div className='container'>
+    <div className='container' >
       <div className='SectionHeader'>
         <h1 className='SectionTitle'> {props.header} </h1>
           {props.numOfMovies===0 ? 
             <div className='MessageContainer'><p className='NoMoviesMessage'>Your list is empty.</p></div> 
             : null}
       </div>
-      <div className='container'>
+      <div className='container' style={{paddingBottom: '5%'}}>
         <div className='row'>
           <div id={props.id} className="carousel slide" data-interval='false'data-ride="carousel">
             <div className="carousel-inner" role="listbox">

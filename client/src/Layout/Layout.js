@@ -35,7 +35,6 @@ class Layout extends Component {
       categories[0].movies = newMovies;
       categories[1].movies = classicMovies;
       categories[2].movies = watchedMovies;
-      console.log(categories);
       this.setState({
         categories,
         movieSearch: '',
@@ -84,8 +83,9 @@ class Layout extends Component {
 
   render() {
       const categories = this.state.categories.map((category, i) => {
-        return <div style={{height: '60vh'}} key={category.id}>
-                  <MovieHolder header={category.title}
+        return     <MovieHolder
+                      key={category.id} 
+                      header={category.title}
                       numOfMovies={category.movies.length} 
                       reset={this.state.resetCarousel} 
                       id={category.id} 
@@ -93,7 +93,6 @@ class Layout extends Component {
                       markAsWatched={this.markAsWatchedHandler} 
                       deleteMovie={this.deleteMovieHandler}
                       />
-                </div>
       })
     return(
       <div className='Layout'>
