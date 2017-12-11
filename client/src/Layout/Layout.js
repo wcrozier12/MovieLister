@@ -51,7 +51,7 @@ class Layout extends Component {
     e.preventDefault();
     const title = this.state.movieSearch;
     const data = {};
-    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=7d3e7708&t=' + title)
+    axios.get('https://www.omdbapi.com/?i=tt3896198&apikey=7d3e7708&t=' + title)
     .then((res) => {
       data.title = res.data.Title;
       data.plot = res.data.Plot;
