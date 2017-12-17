@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/MovieLister";
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3005;
 const routes = require('./controller/routes');
 
 app.use(bodyParser.json());

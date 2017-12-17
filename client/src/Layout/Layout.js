@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NavBar from '../Components/NavBar/NavBar';
-import Aux from '../Components/HOCs/Aux';
 import MovieHolder from '../Components/MovieHolder/MovieHolder';
 import './Layout.css';
 
