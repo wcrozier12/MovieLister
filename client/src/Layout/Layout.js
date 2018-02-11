@@ -13,7 +13,16 @@ class Layout extends Component {
         { title: 'Classic Movies', id: 'classics', movies:[] },
         { title: 'History', id: 'history', movies:[] }
       ],
-      movieSearch: '',
+      searchFields: {
+        movieSearchTerm: {
+          type: 'input',
+          value: ''
+        },
+        movieType: {
+          type: 'select',
+          value: 'new'
+        }
+      },
       viewingModal: false,
       resetCarousel: false
     }
@@ -34,22 +43,39 @@ class Layout extends Component {
       categories[0].movies = newMovies;
       categories[1].movies = classicMovies;
       categories[2].movies = watchedMovies;
+      const resetSearchFields = {
+        ...this.state.searchFields
+      }
+      const resetMovieSearch = {
+        ...resetSearchFields['movieSearchTerm'],
+        value: ''
+      }
+      resetSearchFields['movieSearchTerm'] = resetMovieSearch;
       this.setState({
         categories,
-        movieSearch: '',
+        searchFields: resetSearchFields,
         resetCarousel: false
       })
     })
   }
 
-  handleSearchInput = (event) => {
+  handleSearchInput = (event, elementId) => {
     event.preventDefault();
-    this.setState({movieSearch: event.target.value})
+    const updatedSearchForm = {
+      ...this.state.searchFields
+    }
+    const updatedElement = {
+      ...updatedSearchForm[elementId]
+    }
+    updatedElement.value = event.target.value;
+    updatedSearchForm[elementId] = updatedElement
+    this.setState({searchFields: updatedSearchForm})
   }
   searchMovieHandler = (e) => {
     e.preventDefault();
-    const title = this.state.movieSearch;
+    const title = this.state.searchFields.movieSearchTerm.value;
     const data = {};
+    data.classic = this.state.searchFields.movieType.value === 'classic' ? true : false;
     axios.get('https://www.omdbapi.com/?i=tt3896198&apikey=7d3e7708&t=' + title)
     .then((res) => {
       data.title = res.data.Title;
@@ -95,7 +121,7 @@ class Layout extends Component {
       })
     return(
       <div className='Layout'>
-        <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} emptyForm={this.state.movieSearch}/>
+        <NavBar changed={this.handleSearchInput} clicked={this.searchMovieHandler} searchFields={this.state.searchFields}/>
           <div className='MovieSectionContainer'>
             {categories}
         </div>
